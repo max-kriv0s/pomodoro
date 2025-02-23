@@ -1,15 +1,7 @@
 from typing import Optional
-from sqlalchemy.orm import Mapped, mapped_column, DeclarativeBase,declared_attr
+from sqlalchemy.orm import Mapped, mapped_column
 
-class Base(DeclarativeBase):
-    id: any
-    __name__: str
-    
-    __allow_unmapper__ = True
-    
-    @declared_attr
-    def __tablename__(self) -> str:
-        return self.__name__.lower()
+from database.database import Base
 
 
 class Tasks(Base):
