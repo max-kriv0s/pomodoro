@@ -14,6 +14,7 @@ from repository import UserRepository
 from schema import UserLoginSchema
 
 from settings import Settings
+from utils import verify_password
 
 
 @dataclass
@@ -31,7 +32,7 @@ class AuthService:
     def _validate_auth_user(user: UserProfile, password: str) -> None:
         if not user:
             raise UserNotFoundException
-        if user.password != password:
+        if not verify_password(password=password, hashed_pass=user.password):
             raise UserNotCorrectPasswordException
 
     def generate_access_token(self, user_id: str) -> str:
