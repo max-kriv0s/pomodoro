@@ -19,6 +19,7 @@ redis = "^5.2.1"
 black = "^25.1.0"
 python-jose = {extras = ["cryptography"], version = "^3.4.0"}
 passlib = {extras = ["bcrypt"], version = "^1.7.4"}
+requests = "^2.32.3"
 
 
 [build-system]
