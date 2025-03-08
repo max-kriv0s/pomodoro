@@ -5,7 +5,10 @@ PORT ?= 8000
 ENV_FILE ?= .local.env
 
 run: ## Run the application using uvicorn with provided arguments or defaults
-	uvicorn main:app --host $(HOST) --port $(PORT) --reload --env-file $(ENV_FILE)
+	uvicorn app.main:app --host $(HOST) --port $(PORT) --reload --env-file $(ENV_FILE)
+
+run-gunicorn:
+	poetry run gunicorn main:app --worker-class uvicorn.workers.UvicornWorker -c gunicorn.conf.py
 
 install: ## Install a dependency using poetry
 	@echo "Installing dependency $(LIBRARY)"
