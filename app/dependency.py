@@ -4,12 +4,14 @@ import httpx
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.infrastructure.cache import get_redis_connection
-from app.client.google import GoogleClient
-from app.client.yandex import YandexClient
+from app.users.auth.client.google import GoogleClient
+from app.users.auth.client.yandex import YandexClient
 from app.infrastructure.database import get_db_session
 from app.exception import TokenExpiredException, TokenNotCorrectException
-from app.repository import TaskRepository, TaskCache, UserRepository
-from app.service import TaskService, UserService, AuthService
+from app.tasks.repository import TaskRepository, TaskCache, UserRepository
+from app.tasks.service import TaskService
+from app.users.auth.service import AuthService
+from app.users.user_profile.service import UserService
 from app.settings import Settings
 
 

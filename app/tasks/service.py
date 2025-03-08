@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from app.exception import TaskNotFoundExeption
-from app.repository import TaskRepository, TaskCache
-from app.schema import TaskCreateSchema, TaskSchema
+from app.tasks.repository import TaskRepository, TaskCache
+from app.tasks.schema import TaskCreateSchema, TaskSchema
 
 
 @dataclass
@@ -13,7 +13,7 @@ class TaskService:
         if tasks := await self.task_cache.get_tasks():
             return tasks
         else:
-            tasks = self.task_repository.get_tasks()
+            tasks = await self.task_repository.get_tasks()
             tasks_schema = [TaskSchema.model_validate(task) for task in tasks]
             await self.task_cache.set_tasks(tasks_schema)
             return tasks_schema

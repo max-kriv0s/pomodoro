@@ -1,6 +1,6 @@
 from typing import Optional
-from app.infrastructure.database import Base
 from sqlalchemy.orm import Mapped, mapped_column
+from app.infrastructure.database import Base
 
 
 class UserProfile(Base):
